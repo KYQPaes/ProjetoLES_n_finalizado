@@ -1,0 +1,278 @@
+CREATE DATABASE  IF NOT EXISTS `hotline` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `hotline`;
+-- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
+--
+-- Host: localhost    Database: hotline
+-- ------------------------------------------------------
+-- Server version	8.0.25
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `cartoes`
+--
+
+DROP TABLE IF EXISTS `cartoes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cartoes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(40) DEFAULT NULL,
+  `numero` varchar(40) DEFAULT NULL,
+  `cvv` varchar(4) DEFAULT NULL,
+  `validade` date DEFAULT NULL,
+  `cpf` varchar(11) DEFAULT NULL,
+  `cliente_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cliente_id` (`cliente_id`),
+  CONSTRAINT `cartoes_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`),
+  CONSTRAINT `cartoes_ibfk_2` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cartoes`
+--
+
+LOCK TABLES `cartoes` WRITE;
+/*!40000 ALTER TABLE `cartoes` DISABLE KEYS */;
+INSERT INTO `cartoes` VALUES (45,'leonardo eiji','22222','123','2017-05-12','6546545',5),(50,'leonardo eiji','1234567891234567','123','1998-05-12','45678912365',5),(51,'leonardo eiji','1234567891234567','123','1998-05-12','45678912365',5),(52,'leonardo','111111111','754','2021-11-18','447994747',21),(53,'asd','123','145','2021-11-03','6546546',21),(54,'rwerw','123','1231','1232-03-12','1231231',25);
+/*!40000 ALTER TABLE `cartoes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `clientes`
+--
+
+DROP TABLE IF EXISTS `clientes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `clientes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(40) DEFAULT NULL,
+  `sobrenome` varchar(40) DEFAULT NULL,
+  `senha` varchar(40) DEFAULT NULL,
+  `data_nasc` date DEFAULT NULL,
+  `sexo` varchar(40) DEFAULT NULL,
+  `email` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clientes`
+--
+
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (5,'leonardo','eiji','2036205','1998-05-12',NULL,'leonardo-eiji@live.com'),(21,'roberto','eiji','123',NULL,NULL,'email@novo.com'),(22,'henrique','santos','123',NULL,NULL,'henrique@email.com'),(24,'leonardo','Eiji','12345',NULL,NULL,'leonardo@teste.com'),(25,'Kayque','Paes','123',NULL,NULL,'kyq.paes@gmail.com');
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `compras`
+--
+
+DROP TABLE IF EXISTS `compras`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `compras` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `data_comp` varchar(14) DEFAULT NULL,
+  `status` varchar(30) DEFAULT NULL,
+  `cliente_id` int DEFAULT NULL,
+  `metodo` varchar(300) DEFAULT NULL,
+  `endereco` varchar(300) DEFAULT NULL,
+  `frete` decimal(3,2) DEFAULT NULL,
+  `cupom_id` int DEFAULT NULL,
+  `valor` decimal(10,2) DEFAULT NULL,
+  `metodo2` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cliente_id` (`cliente_id`),
+  CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `compras`
+--
+
+LOCK TABLES `compras` WRITE;
+/*!40000 ALTER TABLE `compras` DISABLE KEYS */;
+INSERT INTO `compras` VALUES (44,'2021-10-01','EM TRANSPORTE',5,'123','12313',0.00,-1,NULL,NULL),(45,'2021-10-03','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(46,'2021-10-05','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(47,'2021-10-05','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(48,'2021-10-06','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(49,'2021-10-06','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(50,'2021-10-06','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(51,'2021-10-10','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(52,'2021-10-12','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(53,'2021-10-12','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(54,'2021-10-12','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(55,'2021-10-12','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(56,'2021-10-12','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(57,'2021-10-13','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(58,'2021-10-13','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(59,'2021-10-15','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(60,'2021-10-15','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(61,'2021-10-18','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(62,'2021-10-18','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(63,'2021-10-20','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(64,'2021-10-20','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(65,'2021-10-20','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(66,'2021-10-20','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(67,'2021-10-20','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(68,'2021-10-20','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(69,'2021-10-20','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(70,'2021-10-20','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(71,'2021-10-25','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(72,'2021-10-25','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(73,'2021-10-28','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(74,'2021-10-28','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(75,'2021-10-28','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(76,'2021-10-31','EM PROCESSAMENTO',5,'123','12313',0.00,-1,NULL,NULL),(77,'2021-11-16','EM PROCESSAMENTO',5,'22222','189',0.00,-1,NULL,NULL),(78,'2021-11-16','EM PROCESSAMENTO',5,'1234567891234567','189',0.00,-1,NULL,NULL),(79,'2021-11-17','EM PROCESSAMENTO',5,'1234567891234567','189',0.00,69,NULL,NULL),(80,'2021-11-18','EM PROCESSAMENTO',5,'1234567891234567','189',4.99,71,NULL,NULL),(81,'2021-11-24','TROCA AUTORIZADA',21,'111111111','123',0.00,-1,NULL,NULL),(82,'2021-11-27','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(83,'2021-11-27','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(84,'2021-11-27','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(85,'2021-11-27','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(86,'2021-11-27','EM PROCESSAMENTO',25,'123','12',4.99,-1,NULL,NULL),(87,'2021-11-28','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(88,'2021-11-28','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(89,'2021-11-28','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(90,'2021-11-28','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(91,'2021-11-28','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(92,'2021-11-28','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(93,'2021-11-28','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(94,'2021-11-28','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(95,'2021-11-28','EM PROCESSAMENTO',25,'123','12',0.00,-1,NULL,NULL),(96,'2021-10-01','EM PROCESSAMENTO',25,'123','12',0.00,-1,49.99,NULL),(97,'2021-11-28','TROCA SOLICITADA',25,'123','12',0.00,-1,99.98,NULL),(98,'2021-11-28','TROCA SOLICITADA',25,'123','12',0.00,-1,199.96,NULL),(99,'2021-11-28','TROCA SOLICITADA',25,'123','12',0.00,-1,249.95,NULL),(100,'2021-11-28','TROCA SOLICITADA',25,'123','12',4.99,-1,99.98,NULL),(101,'2021-11-29','TROCA SOLICITADA',25,'123','12',0.00,-1,49.99,NULL),(102,'2021-11-30','EM PROCESSAMENTO',25,'123','12',0.00,-1,199.96,'123'),(103,'2021-11-30','EM PROCESSAMENTO',25,'123','12',0.00,-1,99.98,'123');
+/*!40000 ALTER TABLE `compras` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `compras_produtos`
+--
+
+DROP TABLE IF EXISTS `compras_produtos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `compras_produtos` (
+  `compraid` int NOT NULL,
+  `produtoid` int NOT NULL,
+  `quantidade` int NOT NULL,
+  PRIMARY KEY (`compraid`,`produtoid`),
+  KEY `produtoid` (`produtoid`),
+  CONSTRAINT `compras_produtos_ibfk_1` FOREIGN KEY (`compraid`) REFERENCES `compras` (`id`),
+  CONSTRAINT `compras_produtos_ibfk_2` FOREIGN KEY (`produtoid`) REFERENCES `produtos` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `compras_produtos`
+--
+
+LOCK TABLES `compras_produtos` WRITE;
+/*!40000 ALTER TABLE `compras_produtos` DISABLE KEYS */;
+INSERT INTO `compras_produtos` VALUES (44,1,2),(45,3,3),(46,1,5),(47,1,1),(48,1,1),(49,1,1),(50,1,1),(51,1,1),(52,1,1),(53,1,1),(54,1,1),(55,1,1),(56,1,1),(57,1,1),(58,1,1),(59,1,1),(60,1,1),(61,1,1),(63,1,1),(64,1,1),(65,1,1),(66,1,1),(67,1,1),(68,1,1),(69,1,1),(70,1,1),(71,1,1),(72,1,1),(73,1,1),(74,1,1),(75,1,1),(76,1,1),(77,2,1),(78,2,1),(79,3,1),(81,2,1),(82,1,1),(82,2,1),(83,1,1),(83,2,2),(83,3,3),(84,2,6),(84,3,4),(84,5,1),(85,1,4),(85,2,2),(86,2,1),(87,1,1),(87,2,1),(88,2,1),(89,2,1),(90,2,1),(91,2,1),(92,2,1),(93,1,1),(93,2,1),(94,2,1),(95,2,1),(97,2,0),(97,3,-1),(98,2,2),(99,2,2),(100,2,1),(101,1,-1),(102,2,4),(103,2,2);
+/*!40000 ALTER TABLE `compras_produtos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cupom`
+--
+
+DROP TABLE IF EXISTS `cupom`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cupom` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `validade` date DEFAULT NULL,
+  `cliente_id` int DEFAULT NULL,
+  `codigo` varchar(20) DEFAULT NULL,
+  `descricao` varchar(20) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cliente_id` (`cliente_id`),
+  CONSTRAINT `cupom_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cupom`
+--
+
+LOCK TABLES `cupom` WRITE;
+/*!40000 ALTER TABLE `cupom` DISABLE KEYS */;
+INSERT INTO `cupom` VALUES (71,'2021-11-24',5,'FRETE-FAHZ4','FRETE GRATIS','USADO');
+/*!40000 ALTER TABLE `cupom` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `enderecos`
+--
+
+DROP TABLE IF EXISTS `enderecos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `enderecos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `telefone` varchar(11) DEFAULT NULL,
+  `cep` varchar(8) DEFAULT NULL,
+  `pais` varchar(40) DEFAULT NULL,
+  `endereco` varchar(40) DEFAULT NULL,
+  `numero` varchar(5) DEFAULT NULL,
+  `bairro` varchar(40) DEFAULT NULL,
+  `cidade` varchar(40) DEFAULT NULL,
+  `estado` varchar(40) DEFAULT NULL,
+  `apelido` varchar(20) DEFAULT NULL,
+  `cliente_id` int DEFAULT NULL,
+  `complementos` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cliente_id` (`cliente_id`),
+  CONSTRAINT `enderecos_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `enderecos`
+--
+
+LOCK TABLES `enderecos` WRITE;
+/*!40000 ALTER TABLE `enderecos` DISABLE KEYS */;
+INSERT INTO `enderecos` VALUES (35,'11995010203','07500000','','Rua Antonio','189','Eldorado','Mogi das Cruzes','SP','Casa',5,'A'),(41,'11995010203','07500000','','Rua Antonio','189','Eldorado','Mogi das Cruzes','SP','Casa',5,'A'),(42,'11984984','081981','brasil','casa','123','cidade','suzano','so','CASA',21,'A'),(43,'re','re','re','re','12','re','re','re','re',25,'re');
+/*!40000 ALTER TABLE `enderecos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `produtos`
+--
+
+DROP TABLE IF EXISTS `produtos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `produtos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(1000) DEFAULT NULL,
+  `descricao` varchar(1000) DEFAULT NULL,
+  `preco` decimal(4,2) DEFAULT NULL,
+  `imagem` varchar(300) DEFAULT NULL,
+  `tipo` varchar(30) DEFAULT NULL,
+  `imagem2` varchar(300) DEFAULT NULL,
+  `imagem3` varchar(300) DEFAULT NULL,
+  `quantidade` decimal(4,0) DEFAULT NULL,
+  `situacao` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `produtos`
+--
+
+LOCK TABLES `produtos` WRITE;
+/*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
+INSERT INTO `produtos` VALUES (1,'forever young','Largura x Altura x Profundidade: 11 cm x 1.5 cm x 9 cm',49.99,'images/carteiras/femininas/modelo1-1.png','feminino','images/carteiras/femininas/modelo1-2.png','images/carteiras/femininas/modelo1-3.png',20,'ativo'),(2,'rick e morty',' Espessura aberta:   1mm1mm<br />\n\n                            Espessura fechada:  2mm2mm<br />\n\n                            Peso:   8 gramas ou 6 gramas<br />\n\n                            Material:   Tyvek - Fibras de polietileno de alta densidade.<br />\n\n                            Resistente à  água:  NÃ£o danifica ao entrar em contato com a água.<br />\n\n                            Resistente à  rasgos:    Não rasga facilmente.<br />',49.99,'images/carteiras/personalizadas/modelo1-1.jpg','personalizado','images/carteiras/personalizadas/modelo1-2.jpg','images/carteiras/personalizadas/modelo1-3.jpg',20,'ativo'),(3,'Pokemon',' Espessura aberta:   1mm1mm<br />\n \n                             Espessura fechada:  2mm2mm<br />\n \n                             Peso:   8 gramas ou 6 gramas<br />\n \n                             Material:   Tyvek - Fibras de polietileno de alta densidade.<br />\n \n                             Resistente à  água:  NÃ£o danifica ao entrar em contato com a água.<br />\n \n                             Resistente à  rasgos:    Não rasga facilmente.<br />',49.99,'images/carteiras/personalizadas/modelo2-1.jpg','personalizado','images/carteiras/personalizadas/modelo2-2.jpg','images/carteiras/personalizadas/modelo2-3.jpg',20,'ativo'),(4,'Pride',' Espessura aberta:   1mm1mm<br />\n \n                             Espessura fechada:  2mm2mm<br />\n \n                             Peso:   8 gramas ou 6 gramas<br />\n \n                             Material:   Tyvek - Fibras de polietileno de alta densidade.<br />\n \n                             Resistente à  água:  NÃ£o danifica ao entrar em contato com a água.<br />\n \n                             Resistente à  rasgos:    Não rasga facilmente.<br />',49.99,'images/carteiras/personalizadas/modelo3-1.jpg','personalizado','images/carteiras/personalizadas/modelo3-2.jpg','images/carteiras/personalizadas/modelo3-3.jpg',20,'ativo'),(5,'Snoopy',' Espessura aberta:   100mm1mm<br />\n \n                             Espessura fechada:  2mm2mm<br />\n \n                             Peso:   8 gramas ou 6 gramas<br />\n \n                             Material:   Tyvek - Fibras de polietileno de alta densidade.<br />\n \n                             Resistente à  água:  NÃ£o danifica ao entrar em contato com a água.<br />\n \n                             Resistente à  rasgos:    Não rasga facilmente.<br />',49.99,'images/carteiras/personalizadas/modelo4-1.jpg','personalizado','images/carteiras/personalizadas/modelo4-2.jpg','images/carteiras/personalizadas/modelo4-3.jpg',20,'ativo');
+/*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `trocas`
+--
+
+DROP TABLE IF EXISTS `trocas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `trocas` (
+  `fk_compraid` int DEFAULT NULL,
+  `fk_produtoid` int DEFAULT NULL,
+  `quantidade` int DEFAULT NULL,
+  KEY `fk_ccompraid` (`fk_compraid`),
+  KEY `fk_produtoid` (`fk_produtoid`),
+  CONSTRAINT `fk_ccompraid` FOREIGN KEY (`fk_compraid`) REFERENCES `compras_produtos` (`compraid`),
+  CONSTRAINT `fk_produtoid` FOREIGN KEY (`fk_produtoid`) REFERENCES `compras_produtos` (`produtoid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `trocas`
+--
+
+LOCK TABLES `trocas` WRITE;
+/*!40000 ALTER TABLE `trocas` DISABLE KEYS */;
+INSERT INTO `trocas` VALUES (97,3,1),(98,2,2),(99,2,3),(97,2,1),(97,3,2),(101,1,2),(100,2,1);
+/*!40000 ALTER TABLE `trocas` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-12-03 22:38:42
