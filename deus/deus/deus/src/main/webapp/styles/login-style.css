@@ -1,0 +1,209 @@
+#all {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#header-box {
+    padding: 8px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: end;
+    
+}
+
+#meio {
+    
+    height: 650px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#foot{
+   
+    
+    margin: 2px;
+
+    }
+
+.logo {
+    text-align: center;
+}
+
+
+#meio{text-align: center;}
+
+.rounded-button-large{ 
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}
+
+
+
+
+#buttons-group{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+
+
+#menu{
+    align-self: start;
+}
+
+#rodape{
+    display: flex;
+    justify-content: space-around;
+    color: black;
+    
+}
+
+a{
+
+    text-decoration: none;
+    
+}
+
+
+
+.pi-youtube{
+
+    color: red;
+    padding: 0.5rem;
+}
+
+.pi-twitter{
+    color: rgb(38, 155, 184);
+    padding: 0.5rem;
+}
+
+.pi-facebook{
+    color: rgb(28, 74, 158);
+    padding: 0.5rem;
+}
+
+.pi-google{
+    color: red;
+    padding: 0.5rem;
+}
+
+.pi-rounded:before {
+
+border: 3px solid black;
+border-radius: 50%;
+padding: 5px;
+
+}
+
+.card{
+    box-shadow: 1px 1px 5px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+
+}
+
+.form{
+    width: 400px;
+    margin: auto;
+    padding-top: 40px;
+}
+
+.card-top{
+    text-align: center;
+}
+
+.card-group{
+    margin-bottom: 10px;
+}
+
+.title{
+    color: rgb(0, 0, 0);
+}
+
+.card-group > label{
+    width: 100%;
+    color: rgb(0, 0, 0);
+    display: block;
+}
+
+.card-group > input{
+    border-radius: 5px;
+    outline: 0;
+    width: 100%;
+    height: 75px;
+    padding: 5px;
+}
+
+.card-group > button{
+    background-image: linear-gradient(to right, rgb(0, 0, 0), rgb(66, 63, 62));
+    width: 100%;
+    border-radius: 30px;
+    padding: 15px;
+    color: white;
+    border: 0px;
+    outline: 0;
+    margin: 5PX;
+}
+
+body {
+background-image: url('./images/backgrounds/neon.gif');
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+
+.log {
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background-color:#333636;
+	border-radius:23px;
+	border:1px solid #3b4240;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:10px 76px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+.log:hover {
+	background-color:#5a6159;
+}
+.log:active {
+	position:relative;
+	top:1px;
+}
+
+.adm {
+	box-shadow: 0px 0px 0px 2px #000000;
+	background:linear-gradient(to bottom, #6389eb 5%, #4a9bff 100%);
+	background-color:#6389eb;
+	border-radius:10px;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	padding:2px 18px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #283966;
+}
+.adm:hover {
+	background:linear-gradient(to bottom, #4a9bff 5%, #6389eb 100%);
+	background-color:#4a9bff;
+}
+.adm:active {
+	position:relative;
+	top:1px;
+}
+
+        

@@ -1,0 +1,239 @@
+body {
+    margin: 0;
+}
+
+#all {
+    text-align     : center;
+    justify-content: center;
+    align-items    : center;
+}
+
+#header-box {
+    padding              : 0px;
+    display              : grid;
+    grid-template-columns: auto 1fr auto;
+    align-items          : end;
+
+}
+
+#meio {
+
+    height          : 725px;
+    margin          : 2px;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    background-image: url('background.jpg');
+
+}
+
+#foot {
+    border: 1px solid black;
+    background-image: linear-gradient(to right top, #373737, #4b4b4b, #606060, #767676, #8c8c8c);
+    margin: 1px;
+
+}
+
+.logo {
+    text-align: center;
+}
+
+
+#meio {
+    text-align: center;
+}
+
+.rounded-button-large {
+    height       : 3rem;
+    width        : 3rem;
+    border-radius: 50%;
+}
+
+
+#search-box {
+    align-self: baseline;
+}
+
+#buttons-group {
+
+    grid-template-columns: auto auto auto;
+    grid-gap             : 3rem;
+    margin-bottom        : 1rem;
+
+}
+
+.galeria {
+    text-align      : center;
+    background-color: white;
+    padding         : 53px;
+}
+
+#menu {
+    align-self: start;
+}
+
+#rodape {
+    display        : flex;
+    justify-content: space-around;
+    color          : black;
+    text-align: left;
+    }
+
+a {
+
+    text-decoration: none;
+
+}
+
+
+
+
+
+.card-group{
+    margin-bottom: 10px;
+}
+
+
+.card-group > label{
+    width: 100%;
+    color: rgb(0, 0, 0);
+    display: block;
+}
+
+.card-group > input{
+   
+  
+    width: 25%;
+    height: 35px;
+    padding: 5px;
+}
+
+.card-group > button{
+    background-image: linear-gradient(to right, rgb(63, 60, 60), rgb(61, 60, 60));
+    width: 30%;
+    border-radius: 30px;
+    padding: 7px;
+    color: white;
+    border: 0px;
+    outline: 0;
+    margin: -1PX;
+}
+
+#icones {
+    margin-bottom  : 16px;
+    width          : 100%;
+    align-items    : end;
+    display        : flex;
+    justify-content: end;
+    flex-direction: column;
+}
+
+#social{
+    padding: 8px;
+    text-align: center;
+}
+
+
+
+#fonte{
+    font-size: 19;
+        
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+ 
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the "active" element to highlight the current page */
+.topnav a.active {
+  background-color: #2196F3;
+  color: white;
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type=text] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .topnav a, .topnav input[type=text] {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;
+  }
+}
+
+
+
+.boxhead {
+    display     : flex;
+    grid-gap    : 15px;
+    margin-right: 16px;
+}
+
+
+.boxhead .otherPage {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+
+#logos{
+    display: flex
+    
+        
+}
+
+
+.Veja {
+	background-color:#212021;
+	border-radius:28px;
+	border:1px solid #383538;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	padding:13px 42px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d393d;
+}
+.Veja:hover {
+	background-color:#474747;
+}
+.Veja:active {
+	position:relative;
+	top:1px;
+}

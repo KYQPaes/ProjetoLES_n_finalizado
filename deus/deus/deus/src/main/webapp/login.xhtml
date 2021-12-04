@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+
+    <title>Login</title>
+    <link rel="stylesheet" href="styles/login-style.css"/>
+    <script src="js/validators/Login.js"></script>
+
+</h:head>
+
+<h:body style="background-image: url('images/backgrounds/neon.gif');">
+
+    
+
+    <header>
+        <div id="header-box">
+           
+        </div>
+    </header>
+
+
+
+    <div id="all">
+
+
+        
+
+
+        <div id="meio">
+
+            <form class="form" action="ControleLogin" method="POST">
+                <div class="card">
+                    <div class="card-top">
+                        <img src="images/logo/hotline.png" width="250" height="250" draggable="false" ></img>
+                        <h2 class="title">HOTLINE WALLET</h2>
+                        <p>Login</p>
+                    </div>
+    
+                    <div class="card-group">
+                        <label>Email:</label>
+                        <input type="text" name="email" placeholder="Digite seu email" id="mail"></input>
+                    </div>
+    
+                    <div class="card-group">
+                        <label>Senha:</label>
+                        <input type="password" name="senha" placeholder="Digite sua senha" id="password"></input>
+                    </div>
+    
+                    <div class="card-group">
+                        
+                        <label>Não tem conta?</label>
+                        <a href="http://localhost:8080/deus-1.0-SNAPSHOT/cadastro.xhtml">
+                            Inscreva-se 
+                        </a>
+                    
+                    </div>
+                    
+                    
+                            
+                    <input type="submit" class="log" value="Login" id="log" onclick=" validate()"/>
+                    
+                         
+                </div>    
+    
+    
+            </form>
+            
+            
+            
+
+           
+        </div>
+        <div id="foot">
+
+            
+        </div>
+    </div>
+
+
+ 
+</h:body>
+
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="styles/cadastro-style.css"/>
+     <script src="js/validators/cadastro.js"></script>
+     
+</h:head>
+
+<h:body style="background-image: url('images/backgrounds/neon.gif');">
+
+    
+
+    <header>
+        <div id="header-box">
+           
+        </div>
+    </header>
+    
+
+
+    <div id="all">
+        <div id="meio">
+            <form class="form" action="ControleCadastro" method="POST">
+                <div class="card">
+                    <div class="card-top">
+                        <img src="images/logo/hotline.png" width="250" height="250" draggable="false" ></img>
+                        <h2 class="title">HOTLINE WALLET</h2>
+                        <p>Cadastro</p>
+                    </div>
+                    <div class="card-group">
+                        <label>Email:</label>
+                        <input type="text" name="email" placeholder="Digite seu email" id="mail"></input>
+                        
+                        <label>Confirme seu email:</label>
+                        <input type="text" name="email" placeholder="Confirme seu email" id="mail_confirmation"></input>
+                    </div>
+                    <div class="card-group">
+                        <label>Nome:</label>
+                        <input type="text" name="nome" placeholder="Digite seu nome" id="name"></input>
+                        
+                        <label>Sobrenome:</label>
+                        <input type="text" name="sobrenome" placeholder="Digite seu sobrenome" id="surname"></input>
+                    </div>
+                    <div class="card-group">
+                        <label>Senha:</label>
+                        <input type="password" name="senha" placeholder="Digite sua senha" id="pass"></input>
+
+                        <label>Confirme sua senha:</label>
+                        <input type="password" name="senha" placeholder="Confirme sua senha" id="pass_confirmation"></input>
+                    </div>
+                    <div class="card-group">
+                        
+                        <label class="container">
+                            <input type="checkbox"  id="box"/>
+                            <span class="checkmark"></span>
+                            Eu li e Aceito com os
+                            <a href="http://localhost:8080/deus-1.0-SNAPSHOT/termos-de-uso.xhtml">
+                                Termos de Uso
+                            </a> 
+                          </label>
+                    </div>
+                    
+                    
+                              
+               
+                    <input type="submit" value="Cadastrar" onclick=" return validate()" id="confirmar" class="log"/>
+
+                  
+                    
+                </div>    
+            </form>
+        </div>
+        <div id="foot">
+        </div>
+    </div>
+</h:body>
+
+</html>

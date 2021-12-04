@@ -1,0 +1,343 @@
+<%@page import="Classes.Produto"%>
+<%@page import="DAO.TrocaDAO"%>
+<%@page import="Classes.ComprasProdutos"%>
+<%@page import="DAO.CompraProdutosDAO"%>
+<%@page import="Classes.Compra"%>
+<%@page import="DAO.CompraDAO"%>
+<%@page import="java.util.Date"%>
+<%@page import="Classes.Cliente"%>
+<%@page import="Classes.Endereco"%>
+<%@page import="DAO.EnderecoDAO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="Classes.Cartao"%>
+<%@page import="java.util.List"%>
+<%@page import="conexao.Conexao"%>
+<%@page import="DAO.CartaoDAO"%>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<%
+    Cliente cliente = (Cliente) session.getAttribute("loguser");
+    if(cliente==null){
+        response.sendRedirect("home-page.xhtml");
+    }
+       
+    int id = Integer.parseInt(request.getParameter("id"));
+    CompraDAO compradata = new CompraDAO(Conexao.getConnection());
+    Compra Altcompra = compradata.SelectSingleCompra(id);
+    
+    CompraProdutosDAO comprapdata = new CompraProdutosDAO(Conexao.getConnection());
+    List<ComprasProdutos> Produtos = comprapdata.selectProdutosCompra(id);
+    request.setAttribute("PRODUTO_LIST", Produtos);
+    
+    TrocaDAO trocadao = new TrocaDAO(Conexao.getConnection());
+    List<Produto> prod = trocadao.selectTroca(id);
+    request.setAttribute("PRODUTOTROCA_LIST", prod);
+    
+%>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+
+    <title>Detalhes Pedido</title>
+    <link rel="stylesheet" href="styles/adm.css"/>
+        <script src="js/validators/details.js"></script>
+</h:head>
+
+<h:body>
+
+    <header>
+        <div id="header-box">
+            <div id='search-box'>
+                
+            </div>
+            <div class="logo">
+                <a href="http://localhost:8080/deus-1.0-SNAPSHOT/home-page.xhtml" draggable="false">  
+                <img src="images/logo/hotline.png" width="250" height="250" draggable="false" ></img> 
+                </a>
+            </div>
+        </div>
+        <div id="icones">
+
+            <div>
+                
+                
+            </div>
+
+            <div class="boxhead">
+                
+                <a class="otherPage" href="http://localhost:8080/deus-1.0-SNAPSHOT/cupons.jsp" draggable="false">  
+                <img src="images/icon/cupom.png" width="40" height="40" draggable="false" ></img> 
+                </a>
+                 
+
+                          
+                <a class="otherPage" href="ControleLogout" draggable="false">  
+                <img src="images/icon/logout.png" width="40" height="40" draggable="false" ></img> 
+                </a>
+    
+
+                
+                <a class="otherPage" href="http://localhost:8080/deus-1.0-SNAPSHOT/clientes.jsp" draggable="false">  
+                <img src="images/icon/setting.png" width="40" height="40" draggable="false" ></img> 
+                </a>
+
+                <a class="otherPage" href="http://localhost:8080/deus-1.0-SNAPSHOT/carrinho.jsp" draggable="false">  
+                <img src="images/icon/cart.png" width="40" height="40" draggable="false" ></img> 
+                </a>
+
+                
+                <br> <br> <br> <br>
+    
+
+         
+            </div>
+
+        </div>
+    </header>
+
+
+
+    <div id="all">
+
+
+              <div class="topnav">
+                <input type="text" id="search" size="30" placeholder="Pesquise Aqui...">
+              <a  id="masculino" href="http://localhost:8080/deus-1.0-SNAPSHOT/compra.jsp?tipo=personalizado">Masculino</a>
+              <a  id="feminino" href="http://localhost:8080/deus-1.0-SNAPSHOT/compra.jsp?tipo=feminino">Feminino</a>
+              <a  id="personalizada" href="http://localhost:8080/deus-1.0-SNAPSHOT/compra.jsp?tipo=personalizado">Personalizadas</a>
+              <a id="carbono"  href="http://localhost:8080/deus-1.0-SNAPSHOT/compra-carbono.xhtml">Carbono</a>
+              <a  id="documento" href="http://localhost:8080/deus-1.0-SNAPSHOT/compra-documento.xhtml">Documento</a>
+              <a  >   |  </a>
+              <a  href="http://localhost:8080/deus-1.0-SNAPSHOT/consulta_produto.jsp" style="color: darkblue">Meus Pedidos</a>
+              
+               
+            </div>
+        
+        
+                <div id="meio">
+            <div class="meiomenor">
+                
+            
+            <div>
+               
+                <table>
+                   
+
+                    <tr>
+                        <h2>Detalhes do Pedido</h2>
+                        <td>
+                            
+                            
+                                <table id="tabela">
+                                    <tr>
+                                      <th>Data da compra</th>
+                                      <th>Forma de pagamento</th>
+                                      <th>Endereço</th>
+                                      <th>Frete</th>
+                                      <th>Valor</th>
+                                      <th>Status</th>
+                                      
+                                    </tr>
+                                  
+                                      
+                                    <tr>
+                                      
+                                      <td><%=Altcompra.getData()%></td>
+                                      <td><%=Altcompra.getMetodo()%></td>
+                                      <td><%=Altcompra.getEndereco()%></td>
+                                      <td><%=Altcompra.getFrete()%></td>
+                                      <td><%=Altcompra.getValor()%></td>
+                                      <td><%=Altcompra.getStatus()%></td>
+                                    </tr>
+                                    <%
+                                    String cond = "EM PROCESSAMENTO";
+
+                                    String ent = "ENTREGA REALIZADA";
+                                      
+                                    String trocaSol = "TROCA SOLICITADA";
+                                    
+                                    String trocaAut = "TROCA AUTORIZADA";
+                                    
+                                    String trocaRec = "TROCA RECUSADA";
+
+                                    String trocaEf = "TROCA EFETUADA";
+                                  %> 
+                                    
+                                </table>
+                            <br>
+                            <c:choose>
+                                <c:when test="<%=Altcompra.getStatus().equals(cond) %>">
+                                    <button type="submit" onclick="" id="save" class="ativar">Cancelar Pedido</button>
+                                </c:when>
+                            </c:choose>
+                            </td>
+                      
+                        </tr>
+                    
+                    </table>
+                </div>
+                <h2>Detalhes do Pedido</h2>
+                <table id="tabela">
+                    <tr>
+                        <th>Produtos</th>
+                        <th>Nome</th>
+                        <th>Quantidade</th>
+                        <c:choose>
+                            <c:when test="<%=Altcompra.getStatus().equals(ent) || Altcompra.getStatus().equals(trocaSol) || Altcompra.getStatus().equals(trocaAut) || Altcompra.getStatus().equals(trocaRec) || Altcompra.getStatus().equals(trocaEf)%>">
+                                <th>Status</th>
+                            </c:when>
+                        </c:choose>
+                    </tr>
+                    <c:forEach var="tempCompra" items="${PRODUTO_LIST}">
+                        <c:choose>
+                            <c:when test="${tempCompra.quantidade>0}">
+                    
+                                <tr>
+                                    <td> <img src="${tempCompra.imagem}" width="200" height="200" draggable="false"/></td>
+                                    <td>Carteira ${tempCompra.nome}</td>
+                                    <td>${tempCompra.quantidade}</td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="<%=Altcompra.getStatus().equals(ent) || Altcompra.getStatus().equals(trocaSol) || Altcompra.getStatus().equals(trocaAut) || Altcompra.getStatus().equals(trocaRec) || Altcompra.getStatus().equals(trocaEf)%>">
+                                                <a href="http://localhost:8080/deus-1.0-SNAPSHOT/troca_prod.jsp?idCompra=${tempCompra.compraid}&idProd=${tempCompra.produtoid}" class="ativar">Requisitar Troca</a>
+                                            </c:when>
+                                        </c:choose>
+                                    </td>
+                                </tr>
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
+                    
+                    
+                </table>
+                <c:choose>
+                    <c:when test="<%=Altcompra.getStatus().equals(trocaSol) || Altcompra.getStatus().equals(trocaAut) || Altcompra.getStatus().equals(trocaRec) || Altcompra.getStatus().equals(trocaEf)%>">
+                    <h2>Troca Requisitadas</h2>
+                        <table id="tabela">
+                            <tr>
+                                <th>Produtos</th>
+                                <th>Nome</th>
+                                <th>Quantidade</th>
+                            </tr>
+                            <c:forEach var="tempTroca" items="${PRODUTOTROCA_LIST}">
+                                <tr>
+                                    <td> <img src="${tempTroca.imagem}" width="200" height="200" draggable="false"/></td>
+                                    <td>Carteira ${tempTroca.nome}</td>
+                                    <td>${tempTroca.quantidade}</td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </c:when>
+                </c:choose>
+            </div>
+               
+          </div>
+            
+           
+            
+        </div>
+        
+        
+        <div id="foot">
+
+            <div id="rodape">
+                <article>
+
+                    <p><font size="5">Ajuda</font></p>
+
+                    <br /> 
+
+
+                    <div id="fonte">
+
+                        <a href="http://localhost:8080/deus-1.0-SNAPSHOT/termos-de-uso.xhtml" style="color: black;" >
+                            Termos e condicoes de uso
+                        </a> 
+                        
+                        <br /> <br />
+                        
+                        <a href="http://localhost:8080/deus-1.0-SNAPSHOT/termos-de-uso.xhtml" style="color: black;">
+                            Politicas de troca
+                        </a> 
+    
+    
+                        <br /><br />
+                        
+                        <a href="http://localhost:8080/deus-1.0-SNAPSHOT/termos-de-uso.xhtml" style="color: black;">
+                            Politicas de privacidade
+                        </a> 
+                    </div>
+
+
+                </article>
+
+                <article>
+
+                    <p><font size="5">Contato</font></p>
+                    <br /> 
+
+                    
+                    <font size="3" face="Arial"> Email: Atendimento@Hotline.com </font> <br />
+
+                    <br /> <br />
+                 
+                    <font size="3" face="Arial"> Telefone : (11) 3548-5434 </font> <br />
+
+
+                    <br /><br />
+                
+                    <font size="3" face="Arial"> Disponivel segunda a sexta-feira, das 09:00 as 18:00 horas </font> <br />
+
+
+                </article>
+
+                <article id="social">
+
+                    
+
+                    <p><font size="5">Social</font></p>
+                    
+                    <font size="3" face="Arial"> Nos encontre em: </font> <br />
+
+                    <br /> <br />
+                    <div id="logos">
+                        
+                 <br /><br />
+                    <a href="https://www.instagram.com" draggable="false">  
+                    <img src="images/icon/instagram.png" width="50" height="50" draggable="false" ></img> 
+                    </a>
+                    
+
+                 <br /><br />
+                    <a href="https://twitter.com" draggable="false">  
+                    <img src="images/icon/twitter.png" width="50" height="50" draggable="false" ></img> 
+                    </a>
+                 
+
+                    
+                    <br /><br />
+                    <a href="https://facebook.com" draggable="false">  
+                    <img src="images/icon/facebook.png" width="50" height="50" draggable="false" ></img> 
+                    </a>
+
+                    <a href="https://youtube.com" draggable="false">  
+                    <img src="images/icon/youtube.png" width="55" height="50" draggable="false" ></img> 
+                    </a>
+                    </div>
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+
+ 
+</h:body>
+
+</html>
